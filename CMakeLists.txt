@@ -47,6 +47,10 @@ endif()
 
 list(APPEND NTSHENGN_DEFINES NTSHENGN_CURRENT_MODULE_ASSET_LOADER)
 
+if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/external/sdk)
+	message(FATAL_ERROR "Please copy Steam\'s SDK found on https://partner.steamgames.com/dashboard (requires a Steamworks Partner account) and unzip it so that it appears as \"external/sdk\".")
+endif()
+
 set(MODULE_SOURCES
 	src/ntshengn_platform_module.cpp)
 set(MODULE_HEADERS
@@ -56,6 +60,10 @@ set(SOURCES ${MODULE_SOURCES})
 set(HEADERS ${MODULE_HEADERS})
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
+
+target_include_directories(${PROJECT_NAME}
+	PRIVATE
+		external/sdk)
 
 target_link_libraries(${PROJECT_NAME}
 	PRIVATE
@@ -78,7 +86,7 @@ target_compile_definitions(${PROJECT_NAME}
 
 set_target_properties(${PROJECT_NAME}
     PROPERTIES
-	OUTPUT_NAME "NutshellEngine-PlatformModule-Default"
+	OUTPUT_NAME "NutshellEngine-PlatformModule-Steam"
     DEFINE_SYMBOL "NutshellEngineModule_EXPORTS")
 
 set(NTSHENGN_INSTALL_MODULE_PATH "NtshEngn_InstallModule_NOTFOUND" CACHE PATH "Give the option to install the built module into NutshellEngine\'s modules directory.")

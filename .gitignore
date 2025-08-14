@@ -363,3 +363,4 @@ FodyWeavers.xsd
 /build/
 /Common/
 /Module/
+/external/sdk
