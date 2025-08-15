@@ -10,6 +10,16 @@ namespace NtshEngn {
 		void init();
 		void update(float dt);
 		void destroy();
+
+		// Returns the user's ID on the platform
+		uint64_t getUserID();
+		// Returns the user's name on the platform
+		std::string getUserName();
+
+		// Show the platform's overlay
+		void showOverlay();
+		// Returns true if the platform's overlay is visible
+		bool isOverlayVisible();
 	};
 
 }
