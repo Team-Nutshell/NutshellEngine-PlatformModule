@@ -5,7 +5,7 @@ namespace NtshEngn {
 
 	class PlatformModule : public PlatformModuleInterface {
 	public:
-		PlatformModule() : PlatformModuleInterface("NutshellEngine Default Platform Module") {}
+		PlatformModule() : PlatformModuleInterface("NutshellEngine Steam Platform Module") {}
 
 		void init();
 		void update(float dt);
