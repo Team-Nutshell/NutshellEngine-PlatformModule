@@ -45,7 +45,7 @@ else()
 	FetchContent_MakeAvailable(Module)
 endif()
 
-list(APPEND NTSHENGN_DEFINES NTSHENGN_CURRENT_MODULE_ASSET_LOADER)
+list(APPEND NTSHENGN_DEFINES NTSHENGN_CURRENT_MODULE_PLATFORM)
 
 if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/external/sdk)
 	message(FATAL_ERROR "Please copy Steam\'s SDK found on https://partner.steamgames.com/dashboard (requires a Steamworks Partner account) and unzip it so that it appears as \"external/sdk\".")
@@ -69,6 +69,16 @@ target_link_libraries(${PROJECT_NAME}
 	PRIVATE
 		NutshellEngine::Module
 		NutshellEngine::Common)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+	target_link_libraries(${PROJECT_NAME}
+		PRIVATE
+			${CMAKE_CURRENT_SOURCE_DIR}/external/sdk/redistributable_bin/win64/steam_api64.lib)
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
+	target_link_libraries(${PROJECT_NAME}
+		PRIVATE
+			${CMAKE_CURRENT_SOURCE_DIR}/external/sdk/redistributable_bin/linux64/libsteam_api.so)
+endif()
 
 target_compile_options(${PROJECT_NAME}
 	PRIVATE
