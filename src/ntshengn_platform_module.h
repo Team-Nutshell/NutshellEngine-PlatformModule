@@ -17,9 +17,16 @@ namespace NtshEngn {
 		// Returns the list of the user's friends on the platform
 		std::vector<PlatformUserInfo> getUserFriendsInfo();
 
+		// Unlocks achievement with identifier achievementID
+		void unlockAchievement(const std::string& achievementID);
+		// Locks achievement with identifier achievementID
+		void lockAchievement(const std::string& achievementID);
+		// Returns true if the achievement with identifier achievementID has been unlocked by the user, else, returns false
+		bool isAchievementUnlocked(const std::string& achievementID);
+
 		// Show the platform's overlay
 		void showOverlay();
-		// Returns true if the platform's overlay is visible
+		// Returns true if the platform's overlay is visible, else, returns false
 		bool isOverlayVisible();
 	};
 
