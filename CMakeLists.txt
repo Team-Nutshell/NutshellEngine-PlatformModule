@@ -45,7 +45,7 @@ else()
 	FetchContent_MakeAvailable(Module)
 endif()
 
-list(APPEND NTSHENGN_DEFINES NTSHENGN_CURRENT_MODULE_ASSET_LOADER)
+list(APPEND NTSHENGN_DEFINES NTSHENGN_CURRENT_MODULE_PLATFORM)
 
 set(MODULE_SOURCES
 	src/ntshengn_platform_module.cpp)
