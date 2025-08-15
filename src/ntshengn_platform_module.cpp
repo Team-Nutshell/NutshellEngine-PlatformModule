@@ -32,7 +32,7 @@ NtshEngn::PlatformUserInfo NtshEngn::PlatformModule::getUserInfo() {
 	else if (userState == EPersonaState::k_EPersonaStateBusy) {
 		m_userInfo.state = PlatformUserState::Busy;
 	}
-	else if ((userState == EPersonaState::k_EPersonaStateAway) || (friendState == EPersonaState::k_EPersonaStateSnooze)) {
+	else if ((userState == EPersonaState::k_EPersonaStateAway) || (userState == EPersonaState::k_EPersonaStateSnooze)) {
 		m_userInfo.state = PlatformUserState::Away;
 	}
 	else {
