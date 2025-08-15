@@ -5,7 +5,7 @@
 
 void NtshEngn::PlatformModule::init() {
 	if (!SteamAPI_Init()) {
-		NTSHENGN_MODULE_ERROR("Steam must be running to play this game.");
+		NTSHENGN_MODULE_ERROR("Steam must be running and you must own a licence to play this game.");
 	}
 }
 
