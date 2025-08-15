@@ -1,7 +1,6 @@
 #include "ntshengn_platform_module.h"
 #include "../Module/utils/ntshengn_dynamic_library.h"
 #include "../Module/utils/ntshengn_module_defines.h"
-#include "../external/sdk/public/steam/steam_api.h"
 
 void NtshEngn::PlatformModule::init() {
 	if (!SteamAPI_Init()) {
@@ -17,6 +16,27 @@ void NtshEngn::PlatformModule::update(float dt) {
 
 void NtshEngn::PlatformModule::destroy() {
 	SteamAPI_Shutdown();
+}
+
+uint64_t NtshEngn::PlatformModule::getUserID() {
+	return SteamUser()->GetSteamID().ConvertToUint64();
+}
+
+std::string NtshEngn::PlatformModule::getUserName() {
+	return SteamFriends()->GetPersonaName();
+}
+
+void NtshEngn::PlatformModule::showOverlay() {
+	SteamFriends()->ActivateGameOverlay("");
+	m_overlayActivated = true;
+}
+
+bool NtshEngn::PlatformModule::isOverlayVisible() {
+	return m_overlayActivated;
+}
+
+void NtshEngn::PlatformModule::onGameOverlayActivated(GameOverlayActivated_t* pCallback) {
+	m_overlayActivated = pCallback->m_bActive;
 }
 
 extern "C" NTSHENGN_MODULE_API NtshEngn::PlatformModuleInterface* createModule() {
