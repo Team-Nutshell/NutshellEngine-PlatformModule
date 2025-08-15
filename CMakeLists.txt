@@ -48,7 +48,7 @@ endif()
 list(APPEND NTSHENGN_DEFINES NTSHENGN_CURRENT_MODULE_PLATFORM)
 
 if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/external/sdk)
-	message(FATAL_ERROR "Please copy Steam\'s SDK found on https://partner.steamgames.com/dashboard (requires a Steamworks Partner account) and unzip it so that it appears as \"external/sdk\".")
+	message(FATAL_ERROR "Please copy Steamworks SDK found on https://partner.steamgames.com/dashboard (requires a Steamworks Partner account) and unzip it so that it appears as \"external/sdk\".")
 endif()
 
 set(MODULE_SOURCES
