@@ -72,6 +72,33 @@ std::vector<NtshEngn::PlatformUserInfo> NtshEngn::PlatformModule::getUserFriends
 	return friends;
 }
 
+void NtshEngn::PlatformModule::unlockAchievement(const std::string& achievementID) {
+	if (SteamUserStats()->SetAchievement(achievementID.c_str())) {
+		SteamUserStats()->StoreStats();
+	}
+	else {
+		NTSHENGN_MODULE_WARNING("Steam cannot unlock this achievement as it cannot find it in the achievement list.");
+	}
+}
+
+void NtshEngn::PlatformModule::lockAchievement(const std::string& achievementID) {
+	if (SteamUserStats()->ClearAchievement(achievementID.c_str())) {
+		SteamUserStats()->StoreStats();
+	}
+	else {
+		NTSHENGN_MODULE_WARNING("Steam cannot lock this achievement as it cannot find it in the achievement list.");
+	}
+}
+
+bool NtshEngn::PlatformModule::isAchievementUnlocked(const std::string& achievementID) {
+	bool isUnlocked = false;
+	if (!SteamUserStats()->GetAchievement(achievementID.c_str(), &isUnlocked)) {
+		NTSHENGN_MODULE_WARNING("Steam cannot check if this achievement is unlocked as it cannot find it in the achievement list.");
+	}
+
+	return isUnlocked;
+}
+
 void NtshEngn::PlatformModule::showOverlay() {
 	SteamFriends()->ActivateGameOverlay("");
 	m_overlayActivated = true;
