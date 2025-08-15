@@ -15,16 +15,16 @@ void NtshEngn::PlatformModule::destroy() {
     NTSHENGN_MODULE_FUNCTION_NOT_IMPLEMENTED();
 }
 
-uint64_t NtshEngn::PlatformModule::getUserID() {
+NtshEngn::PlatformUserInfo NtshEngn::PlatformModule::getUserInfo() {
     NTSHENGN_MODULE_FUNCTION_NOT_IMPLEMENTED();
 
-    return 0;
+    return PlatformUserInfo();
 }
 
-std::string NtshEngn::PlatformModule::getUserName() {
+std::vector<NtshEngn::PlatformUserInfo> NtshEngn::PlatformModule::getUserFriendsInfo() {
     NTSHENGN_MODULE_FUNCTION_NOT_IMPLEMENTED();
 
-    return std::string();
+    return std::vector<PlatformUserInfo>();
 }
 
 void NtshEngn::PlatformModule::showOverlay() {

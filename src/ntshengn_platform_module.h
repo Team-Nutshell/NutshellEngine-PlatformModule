@@ -11,10 +11,11 @@ namespace NtshEngn {
 		void update(float dt);
 		void destroy();
 
-		// Returns the user's ID on the platform
-		uint64_t getUserID();
-		// Returns the user's name on the platform
-		std::string getUserName();
+		// Returns the user's information on the platform
+		PlatformUserInfo getUserInfo();
+
+		// Returns the list of the user's friends on the platform
+		std::vector<PlatformUserInfo> getUserFriendsInfo();
 
 		// Show the platform's overlay
 		void showOverlay();
