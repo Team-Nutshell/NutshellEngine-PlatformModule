@@ -78,8 +78,10 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD
 	target_link_libraries(${PROJECT_NAME}
 		PRIVATE
 			${CMAKE_CURRENT_SOURCE_DIR}/external/sdk/redistributable_bin/linux64/libsteam_api.so)
-	list(APPEND CMAKE_BUILD_RPATH .)
-	list(APPEND CMAKE_INSTALL_RPATH .)
+	set_target_properties(${PROJECT_NAME}
+		PROPERTIES
+			BUILD_WITH_INSTALL_RPATH TRUE
+			LINK_FLAGS "-Wl,-rpath,$ORIGIN/..")
 endif()
 
 target_compile_options(${PROJECT_NAME}
